@@ -62,6 +62,6 @@ describe('Class LinkedList', () => {
         test('does not throw an Error when constructor is empty or passed null', () => {
             expect(() => new LinkedList()).not.toThrow();
             expect(() => new LinkedList(null)).not.toThrow();
-        })
+        });
     });
-})
+});
