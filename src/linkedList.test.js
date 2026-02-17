@@ -40,5 +40,14 @@ describe('Class Node', () => {
         expect(node1.next.value).toBe(2);
         expect(node1.next.next.value).toBe(3);
         expect(node1.next.next.next).toBeNull();
+    });
+
+    test('handles unlinking a node', () => {
+        const node3 = new Node(3);
+        const node2 = new Node(2, node3);
+        const node1 = new Node(1, node2);
+
+        node2.next = null;
+        expect(node1.next.next).toBeNull()
     })
-})
+});
