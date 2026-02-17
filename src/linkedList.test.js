@@ -1,4 +1,4 @@
-import { Node } from "./linkedList";
+import { Node, LinkedList } from "./linkedList";
 
 describe('Class Node', () => {
     test('creates a Node with default values', () => {
@@ -51,3 +51,16 @@ describe('Class Node', () => {
         expect(node1.next.next).toBeNull()
     })
 });
+
+describe('Class LinkedList', () => {
+    describe('Error Throwing:', () => {
+        test.each([1, 'hello, world', {}, null])(
+            'throws TypeError when passed %s', (value) => {
+                expect(() => new LinkedList(value)).toThrow(TypeError);
+            }
+        );
+        test('does not throw an Error when constructor is empty', () => {
+            expect(() => new LinkedList()).not.toThrow();
+        })
+    });
+})
