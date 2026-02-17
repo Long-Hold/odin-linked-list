@@ -39,6 +39,10 @@ export class LinkedList {
         ++this.#length;
     }
 
+    /**
+     * Returns the last node in the Linked List or null if the list is empty.
+     * @returns {Node|null} The last Node in the list or null.
+     */
     tail() {
         if (!this.head) return null;
         let dummy = this.head;
