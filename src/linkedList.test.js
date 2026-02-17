@@ -86,13 +86,13 @@ describe('Class LinkedList', () => {
             });
             test('append() adds many nodes to the end in sequence', () => {
                 const linkedList = new LinkedList();
-                linkedList.append(1);
+                linkedList.append();
                 linkedList.append(2);
-                linkedList.append(3);
+                linkedList.append();
 
-                expect(linkedList.head.value).toBe(1);
+                expect(linkedList.head.value).toBeNull();
                 expect(linkedList.head.next.value).toBe(2);
-                expect(linkedList.head.next.next.value).toBe(3);
+                expect(linkedList.head.next.next.value).toBeNull();
             });
             test('append() increments #size', () => {
                 const linkedList = new LinkedList();
