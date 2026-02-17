@@ -64,4 +64,12 @@ describe('Class LinkedList', () => {
             expect(() => new LinkedList(null)).not.toThrow();
         });
     });
+    describe('methods', () => {
+        test('size() returns 0 when constructor is empty or passed null', () => {
+            const emptyConstructor = new LinkedList();
+            const nullConstructor = new LinkedList(null);
+            expect(emptyConstructor.size()).toBe(0);
+            expect(nullConstructor.size()).toBe(0);
+        })
+    })
 });
