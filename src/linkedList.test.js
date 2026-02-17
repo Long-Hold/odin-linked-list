@@ -107,6 +107,35 @@ describe('Class LinkedList', () => {
                 const headList = new LinkedList(node);
                 expect(headList.size()).toBe(1);
             })
-        })
-    })
+        });
+
+        describe('tail()', () => {
+            test('return null on an empty list', () => {
+                const linkedList = new LinkedList();
+                expect(linkedList.tail()).toBeNull();
+            });
+            test('returns the head node if it only exists', ()=> {
+                const node = new Node();
+                const linkedList = new LinkedList(node);
+                expect(linkedList.tail()).toBe(linkedList.head);
+
+                const appendedList = new LinkedList();
+                appendedList.append('test');
+                expect(appendedList.tail()).toBe(appendedList.head);
+            });
+            test('returns the tail node of the list', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(1);
+                linkedList.append(2);
+                linkedList.append(3);
+                expect(linkedList.tail()).toBe(linkedList.head.next.next);
+
+                const head = new Node();
+                const headedList = new LinkedList(head);
+                headedList.append(2);
+                headedList.append(3);
+                expect(headedList.tail()).toBe(headedList.head.next.next);
+            });
+        });
+    });
 });
