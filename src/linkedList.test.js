@@ -54,13 +54,14 @@ describe('Class Node', () => {
 
 describe('Class LinkedList', () => {
     describe('Error Throwing:', () => {
-        test.each([1, 'hello, world', {}, null])(
+        test.each([1, 'hello, world', {}])(
             'throws TypeError when passed %s', (value) => {
                 expect(() => new LinkedList(value)).toThrow(TypeError);
             }
         );
-        test('does not throw an Error when constructor is empty', () => {
+        test('does not throw an Error when constructor is empty or passed null', () => {
             expect(() => new LinkedList()).not.toThrow();
+            expect(() => new LinkedList(null)).not.toThrow();
         })
     });
 })
