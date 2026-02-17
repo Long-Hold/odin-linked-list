@@ -17,4 +17,35 @@ export class LinkedList {
     size() {
         return this.#length;
     }
+
+    /**
+     * Creates and appends a new Node with an assigned value to the end of list.
+     * @param {any} value - The value assigned to the new Node.
+     */
+    append(value = null) {
+        const node = new Node(value);
+        if (!this.head) {
+            this.head = node;
+            ++this.#length;
+            return;
+        }
+
+        let dummy = this.head;
+        while (dummy.next) {
+            dummy = dummy.next;
+        }
+
+        dummy.next = node;
+        ++this.#length;
+    }
+
+    tail() {
+        if (!this.head) return null;
+        let dummy = this.head;
+        while (dummy.next) {
+            dummy = dummy.next;
+        }
+
+        return dummy;
+    }
 }

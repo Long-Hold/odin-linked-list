@@ -70,6 +70,43 @@ describe('Class LinkedList', () => {
             const nullConstructor = new LinkedList(null);
             expect(emptyConstructor.size()).toBe(0);
             expect(nullConstructor.size()).toBe(0);
+        });
+
+        describe('append() and size()', () =>  {
+            test('append() creates a new head if linked list is empty', () => {
+                const linkedList = new LinkedList();
+                linkedList.append('hello');
+                expect(linkedList.head.value).toBe('hello');
+            });
+            test('append() does not override the head if one exists', () => {
+                const head = new Node(1);
+                const linkedList = new LinkedList(head);
+                linkedList.append(2);
+                expect(linkedList.head.value).toBe(1);
+            });
+            test('append() adds many nodes to the end in sequence', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(1);
+                linkedList.append(2);
+                linkedList.append(3);
+
+                expect(linkedList.head.value).toBe(1);
+                expect(linkedList.head.next.value).toBe(2);
+                expect(linkedList.head.next.next.value).toBe(3);
+            });
+            test('append() increments #size', () => {
+                const linkedList = new LinkedList();
+                expect(linkedList.size()).toBe(0);
+
+                linkedList.append(1);
+                linkedList.append(2);
+                linkedList.append(3);
+                expect(linkedList.size()).toBe(3);
+
+                const node = new Node();
+                const headList = new LinkedList(node);
+                expect(headList.size()).toBe(1);
+            })
         })
     })
 });
