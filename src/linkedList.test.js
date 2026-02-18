@@ -154,5 +154,11 @@ describe('Class LinkedList', () => {
                 expect(headedList.tail()).toBe(headedList.head.next.next);
             });
         });
+        describe('head()', () => {
+            test('returns null if there is no head', () => {
+                const linkedList = new LinkedList();
+                expect(linkedList.head()).toBeNull();
+            })
+        });
     });
 });

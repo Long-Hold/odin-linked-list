@@ -71,4 +71,8 @@ export class LinkedList {
 
         return dummy;
     }
+
+    head() {
+        return this.head;
+    }
 }
