@@ -184,42 +184,39 @@ export class LinkedList {
         if (index < 0 || index >= this.#size) throw RangeError('Index must be within range of the list size.');
 
         /**
-         * In the case where we are inserting at the head, we need to specifically re-assign
-         * it. 
+         * Prepends a node to the head node.
          * 
-         * Because we use this LinkedList.append() method, the this.#tail will point to the last node
-         * in the values[] array.
+         * With previousNode starting it's iteration at sentinel, it will stop
+         * at the node before the passed index value.
          * 
-         * After ...values has been appended, we iterate to the end of the temporary node list, and
-         * assign this.#tail to the last node in that list.
+         * This means previousNode.next can begin appending the new values.
          */
-        if (index === 0) {
-            let temp = this.#head;
-            this.#head = null;
-            values.forEach(value => this.append(value));
-            this.#tail.next = temp;
-            while (temp.next) {
-                temp = temp.next;
-            }
-            this.#tail = temp;
-            return;
+        const sentinel = new Node(null, this.#head);
+        let previousNode = sentinel;
+        for (let i = 0; i < index; ++i) {
+            previousNode = previousNode.next;
         }
 
-        //Go to the node just before the index
-        let leftList = this.#head;
-        for (let i = 0; i < index - 1; ++i) {
-            leftList = leftList.next;
-        }
-
-        // Save this part of the list
-        const rightList = leftList.next ? leftList.next : leftList;
-
+        /**
+         * rightNode stores the node list starting at the 'index' param, which is the next
+         * index from previousNode. 
+         * 
+         * New values will be inserted at it's position, so it needs to be stored in a temporary
+         * variable.
+         */
+        let rightNode = previousNode.next;
         values.forEach(value => {
-            leftList.next = new Node(value);
-            leftList = leftList.next;
+            previousNode.next = new Node(value);
+            previousNode = previousNode.next;
             ++this.#size;
         });
+        previousNode.next = rightNode;
 
-        leftList.next = rightList;
+        /**
+         * In the event insertAt() receives index 0 (the head node), then it'll need to be re-assigned.
+         * sentinel.next would have it's value overwritten with the new values from ...values,
+         * and since sentinel is before the 'head' node, it's next value will be the new head.
+         */
+        this.#head = sentinel.next;
     }
 }

@@ -390,6 +390,10 @@ describe('Class LinkedList', () => {
                 expect(() => linkedList.insertAt(2, 1)).toThrow(RangeError);
                 expect(() => linkedList.insertAt(linkedList.size, 1)).toThrow(RangeError);
             });
+            test('throws a rangeError when the LinkedList is empty', () => {
+                const linkedList = new LinkedList();
+                expect(() => linkedList.insertAt(0,0)).toThrow(RangeError);
+            })
             test('correctly inserts and updates the linked list with new values', () => {
                 const linkedList = new LinkedList();
                 linkedList.append(1);
