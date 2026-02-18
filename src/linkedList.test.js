@@ -389,7 +389,37 @@ describe('Class LinkedList', () => {
                 linkedList.pop();
                 expect(() => linkedList.insertAt(2, 1)).toThrow(RangeError);
                 expect(() => linkedList.insertAt(linkedList.size, 1)).toThrow(RangeError);
-            })
+            });
+            test('correctly inserts and updates the linked list with new values', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(1);
+                linkedList.append(2);
+                linkedList.append(5);
+                expect(linkedList.size).toBe(3);
+                expect(linkedList.toString()).toBe('(1) -> (2) -> (5) -> null');
+
+                linkedList.insertAt(2, 3, 4);
+                expect(linkedList.size).toBe(5);
+                expect(linkedList.at(2)).toBe(3);
+                expect(linkedList.at(3)).toBe(4);
+                expect(linkedList.tail.value).toBe(5);
+                expect(linkedList.head.value).toBe(1);
+                expect(linkedList.toString()).toBe('(1) -> (2) -> (3) -> (4) -> (5) -> null');
+
+                linkedList.pop();
+                linkedList.pop();
+                linkedList.pop();
+                linkedList.pop();
+                linkedList.pop();
+                expect(linkedList.size).toBe(0);
+
+                linkedList.append(1);
+                linkedList.insertAt(0, 0);
+                expect(linkedList.head.value).toBe(0);
+                expect(linkedList.tail.value).toBe(1);
+                linkedList.insertAt(1, 2);
+                expect(linkedList.at(1)).toBe(2);
+            });
         });
     });
 });

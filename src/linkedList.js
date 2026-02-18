@@ -182,6 +182,37 @@ export class LinkedList {
     insertAt(index, ...values) {
         if (!Number.isInteger(index)) throw TypeError('Index must be an integer.');
         if (index < 0 || index >= this.#size) throw RangeError('Index must be within range of the list size.');
-        
+
+        if (index === 0) {
+            const rightSide = this.#head;
+            const newHead = new Node(values[0]);
+            this.#head = newHead;
+            ++this.#size;
+
+            let leftSide = this.#head;
+            for (let i = 1; i < values.length; ++i) {
+                leftSide.next = new Node(values[i]);
+                leftSide = leftSide.next;
+                ++this.#size;
+            }
+
+            leftSide.next = rightSide;
+            return;
+        }
+        // Finds the node just before the insert position
+        let leftTail = this.#head;
+        for (let i = 1; i < index; ++i) {
+            leftTail = leftTail.next;
+        }
+        // This is the node list that gets connected to the tail of the new values
+        const rightTail = leftTail.next;
+
+        values.forEach(value => {
+            const node = new Node(value);
+            leftTail.next = node;
+            leftTail = leftTail.next;
+            ++this.#size;
+        });
+        leftTail.next = rightTail;
     }
 }
