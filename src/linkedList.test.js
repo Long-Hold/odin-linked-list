@@ -310,6 +310,16 @@ describe('Class LinkedList', () => {
                 linkedList.pop();
                 expect(linkedList.findIndex('hello')).toBe(-1);
             });
+            test('returns the index of an matching node value', () => {
+                const linkedList = new LinkedList();
+                linkedList.prepend(0);
+                linkedList.append(1);
+                linkedList.append('A word?!');
+
+                expect(linkedList.findIndex(0)).toBe(0);
+                expect(linkedList.findIndex(1)).toBe(1);
+                expect(linkedList.findIndex('A word?!')).toBe(2);
+            });
         })
     });
 });
