@@ -170,4 +170,18 @@ export class LinkedList {
         nodeString += 'null';
         return nodeString;
     }
+
+    /**
+     * Inserts n number of values at the specific index.
+     * The existing node at index is relinked to the end of the newly insert nodes,
+     * and the node before the index is linked to the start of the new values.
+     * 
+     * @param {number} index - The position in the Linked List to insert the new values at.
+     * @param  {...any} values - A group of values to insert.
+     */
+    insertAt(index, ...values) {
+        if (!Number.isInteger(index)) throw TypeError('Index must be an integer.');
+        if (index < 0 || index >= this.#size) throw RangeError('Index must be within range of the list size.');
+        
+    }
 }

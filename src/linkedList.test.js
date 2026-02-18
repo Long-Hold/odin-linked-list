@@ -370,5 +370,26 @@ describe('Class LinkedList', () => {
                 expect(linkedList.toString()).toBe('(head) -> (1) -> (2) -> (hello, world) -> null');
             });
         });
+        describe('insertAt()', () => {
+            test.each(
+                [0.1, 'word', {}, new Number()]
+            )('throws TypeError when passed %s', (value) => {
+                const linkedList = new LinkedList();
+                expect(() => linkedList.insertAt(value, 1)).toThrow(TypeError);
+            });
+            test('throws RangeError when passed index is out of range', () => {
+                const linkedList = new LinkedList();
+                linkedList.prepend();
+                linkedList.append();
+                linkedList.append();
+                expect(() => linkedList.insertAt(-1, 1)).toThrow(RangeError);
+                expect(() => linkedList.insertAt(3, 1)).toThrow(RangeError);
+                expect(() => linkedList.insertAt(linkedList.size, 1)).toThrow(RangeError);
+
+                linkedList.pop();
+                expect(() => linkedList.insertAt(2, 1)).toThrow(RangeError);
+                expect(() => linkedList.insertAt(linkedList.size, 1)).toThrow(RangeError);
+            })
+        });
     });
 });
