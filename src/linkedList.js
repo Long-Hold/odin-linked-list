@@ -126,4 +126,18 @@ export class LinkedList {
 
         return dummy.value === value;
     }
+
+    findIndex(value) {
+        if (!this.#head) return -1;
+
+        let nodeCounter = 0;
+        let dummy = this.#head;
+        while (dummy) {
+            if (dummy.value === value) return nodeCounter;
+            dummy = dummy.next;
+            ++nodeCounter;
+        }
+        
+        return -1;
+    }
 }

@@ -299,5 +299,17 @@ describe('Class LinkedList', () => {
                 expect(linkedList.contains('First')).toBe(true);
             });
         });
+        describe('findIndex()', () => {
+            test('returns -1 if there is no linked list', () => {
+                const linkedList = new LinkedList();
+                expect(linkedList.findIndex('hello')).toBe(-1);
+
+                linkedList.append();
+                linkedList.prepend();
+                linkedList.pop();
+                linkedList.pop();
+                expect(linkedList.findIndex('hello')).toBe(-1);
+            });
+        })
     });
 });
