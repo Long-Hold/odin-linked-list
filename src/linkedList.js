@@ -114,4 +114,16 @@ export class LinkedList {
 
         return headValue;
     }
+
+    contains(value) {
+        if (!this.#head) return false;
+
+        let dummy = this.#head;
+        while (dummy.next) {
+            if (dummy.value === value) return true;
+            dummy = dummy.next;
+        }
+
+        return dummy.value === value;
+    }
 }

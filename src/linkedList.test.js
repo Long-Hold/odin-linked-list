@@ -270,5 +270,34 @@ describe('Class LinkedList', () => {
                 expect(linkedList.size).toBe(0);
             });
         });
+        describe('contains()', () => {
+            test('returns false if the Linked List is empty', () => {
+                const linkedList = new LinkedList();
+                expect(linkedList.contains('some value')).toBe(false);
+            });
+            test('returns true if the value is in the Linked List', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(1);
+                expect(linkedList.contains(1)).toBe(true);
+                linkedList.prepend('Second Node!');
+                linkedList.prepend(-1);
+                expect(linkedList.contains('Second Node!')).toBe(true);
+                expect(linkedList.contains(1)).toBe(true);
+                expect(linkedList.contains('Second Node!')).toBe(true);
+            });
+            test('returns false if the value is not in the Linked List', () => {
+                const linkedList = new LinkedList();
+                linkedList.append('First');
+                expect(linkedList.contains('second')).toBe(false);
+                
+                expect(linkedList.contains('First')).toBe(true);
+                linkedList.pop();
+                expect(linkedList.contains('First')).toBe(false);
+                linkedList.prepend('Second');
+                linkedList.append('First');
+                expect(linkedList.contains('Second')).toBe(true);
+                expect(linkedList.contains('First')).toBe(true);
+            });
+        });
     });
 });
