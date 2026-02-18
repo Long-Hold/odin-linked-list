@@ -166,6 +166,14 @@ describe('Class LinkedList', () => {
             test('returns null if there is no head', () => {
                 const linkedList = new LinkedList();
                 expect(linkedList.head).toBeNull();
+            });
+            test('returns head node after calling append', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(0);
+                expect(linkedList.head.value).toBe(0);
+                linkedList.append(1);
+                linkedList.append(2);
+                expect(linkedList.head.value).toBe(0);
             })
         });
     });
