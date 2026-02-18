@@ -108,7 +108,24 @@ describe('Class LinkedList', () => {
                 expect(headList.size()).toBe(1);
             })
         });
-
+        describe('prepend() and size()', () => {
+            test('prepend() creates a new head if one does not exist', () => {
+                const linkedList = new LinkedList();
+                linkedList.prepend();
+                expect(linkedList.head).not.toBeNull();
+                expect(linkedList.size()).toBe(1);
+            });
+            test('prepend() replaces head with new node', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(1);
+                linkedList.append(2);
+                expect(linkedList.size()).toBe(2);
+                expect(linkedList.head.value).toBe(1);
+                linkedList.prepend(0);
+                expect(linkedList.size()).toBe(3);
+                expect(linkedList.head.value).toBe(0);
+            });
+        });
         describe('tail()', () => {
             test('return null on an empty list', () => {
                 const linkedList = new LinkedList();

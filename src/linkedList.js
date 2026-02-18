@@ -39,6 +39,11 @@ export class LinkedList {
         ++this.#length;
     }
 
+    /**
+     * Createss a new Node and prepends it to the start of the Linked List.
+     * If no head Node exists, then the prepended Node becomes the head.
+     * @param {any} value - The value assigned to the new Node.
+     */
     prepend(value = null) {
         const node = new Node(value);
         if (!this.head) {
