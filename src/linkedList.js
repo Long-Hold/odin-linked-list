@@ -102,8 +102,11 @@ export class LinkedList {
 
     pop() {
         if (!this.#head) return undefined;
+
         const headValue = this.#head.value;
         this.#head = this.#head.next;
+        --this.#size;
+        
         return headValue;
     }
 }

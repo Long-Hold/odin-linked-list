@@ -231,6 +231,44 @@ describe('Class LinkedList', () => {
                 linkedList.prepend(0);
                 expect(linkedList.pop()).toBe(0);
             });
+            test('returns undefined if there is no head node', () => {
+                const linkedList = new LinkedList();
+                expect(linkedList.pop()).toBe(undefined);
+
+                linkedList.append(1);
+                linkedList.prepend(0);
+                linkedList.pop();
+                linkedList.pop();
+                expect(linkedList.pop()).toBe(undefined);
+            });
+            test('properly resets the head node to the second node or null', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(2);
+                linkedList.prepend(1);
+                expect(linkedList.head.value).toBe(1);
+                linkedList.pop();
+                expect(linkedList.head.value).toBe(2);
+
+                linkedList.prepend(0);
+                linkedList.prepend(1);
+                linkedList.pop();
+                expect(linkedList.head.value).toBe(0);
+            });
+            test('size property correctly matches list length', () => {
+                const linkedList = new LinkedList();
+                expect(linkedList.size).toBe(0);
+
+                linkedList.append(1);
+                linkedList.prepend(0);
+                expect(linkedList.size).toBe(2);
+                
+                linkedList.pop();
+                expect(linkedList.size).toBe(1);
+                linkedList.pop();
+                expect(linkedList.size).toBe(0);
+                linkedList.pop();
+                expect(linkedList.size).toBe(0);
+            });
         });
     });
 });
