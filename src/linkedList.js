@@ -115,6 +115,14 @@ export class LinkedList {
         return headValue;
     }
 
+    /**
+     * Searches the Linked List and compares each Node's value to the passed value parameter.
+     * If a match is found, immediately returns true, otherwise returns false.
+     * 
+     * If there is no head node, returns false.
+     * @param {any} value - The value to compare against each Node's value property.
+     * @returns {boolean} True if list contains the value. False if not.
+     */
     contains(value) {
         if (!this.#head) return false;
 
@@ -127,6 +135,11 @@ export class LinkedList {
         return dummy.value === value;
     }
 
+    /**
+     * Returns the index of the first node that has a matching value, or -1 if it cannot be found.
+     * @param {any} value - The value of the node to find the index of.
+     * @returns {number} The index of the node with the matching value, or -1 if it cannot be found.
+     */
     findIndex(value) {
         if (!this.#head) return -1;
 
@@ -137,7 +150,7 @@ export class LinkedList {
             dummy = dummy.next;
             ++nodeCounter;
         }
-        
+
         return -1;
     }
 }
