@@ -320,6 +320,15 @@ describe('Class LinkedList', () => {
                 expect(linkedList.findIndex(1)).toBe(1);
                 expect(linkedList.findIndex('A word?!')).toBe(2);
             });
-        })
+            test('returns the index of the first node with matching value if there are duplicates', () => {
+                const linkedList = new LinkedList();
+                linkedList.prepend('head');
+                linkedList.append('head');
+                linkedList.append('shoulders');
+                linkedList.prepend('shoulders');
+                expect(linkedList.findIndex('head')).toBe(1);
+                expect(linkedList.findIndex('shoulders')).toBe(0);
+            });
+        });
     });
 });
