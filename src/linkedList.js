@@ -74,4 +74,9 @@ export class LinkedList {
         this.#head.next = temp;
         ++this.#size;
     }
+
+    at(index) {
+        if (!Number.isInteger(index)) throw new TypeError('Index must be a positive integer value.');
+        if (index < 0) throw new RangeError('Index must be a positive integer value.');
+    }
 }

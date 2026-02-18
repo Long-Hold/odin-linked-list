@@ -186,5 +186,17 @@ describe('Class LinkedList', () => {
                 expect(linkedList.head.value).toBe(0);
             });
         });
+        describe('at()', () => {
+            test.each(['word', [], 10.2, new Number()])(
+                'throws TypeError when passed %s', (input) => {
+                    const linkedList = new LinkedList();
+                    expect(() => linkedList.at(input)).toThrow(TypeError);
+            });
+            test('throws RangeError when passed an index less than 0', () => {
+                const linkedList = new LinkedList();
+                expect(() => linkedList.at(-1)).toThrow(RangeError);
+                expect(() => linkedList.at(-2)).toThrow(RangeError);
+            });
+        });
     });
 });
