@@ -153,4 +153,16 @@ export class LinkedList {
 
         return -1;
     }
+
+    toString() {
+        if (!this.#head) return 'null';
+        let nodeString = '';
+        let dummy = this.#head;
+        while (dummy) {
+            nodeString += `(${dummy.value}) -> `;
+            dummy = dummy.next;
+        }
+        nodeString += 'null';
+        return nodeString;
+    }
 }

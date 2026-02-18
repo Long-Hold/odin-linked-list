@@ -344,5 +344,17 @@ describe('Class LinkedList', () => {
                 expect(linkedList.findIndex('this does not exist')).toBe(-1);
             })
         });
+        describe('toString()', () => {
+            test('returns "null" if there is no head', () => {
+                const linkedList = new LinkedList();
+                expect(linkedList.toString()).toBe('null');
+
+                linkedList.prepend();
+                linkedList.append();
+                linkedList.pop();
+                linkedList.pop();
+                expect(linkedList.toString()).toBe('null');
+            });
+        });
     });
 });
