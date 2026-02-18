@@ -154,6 +154,11 @@ export class LinkedList {
         return -1;
     }
 
+    /**
+     * Converts the Linked List node values into a string representation, in the order
+     * they are linked.
+     * @returns {string} A string representation of the Linked List.
+     */
     toString() {
         if (!this.#head) return 'null';
         let nodeString = '';
