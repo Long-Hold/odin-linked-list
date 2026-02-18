@@ -183,36 +183,43 @@ export class LinkedList {
         if (!Number.isInteger(index)) throw TypeError('Index must be an integer.');
         if (index < 0 || index >= this.#size) throw RangeError('Index must be within range of the list size.');
 
+        /**
+         * In the case where we are inserting at the head, we need to specifically re-assign
+         * it. 
+         * 
+         * Because we use this LinkedList.append() method, the this.#tail will point to the last node
+         * in the values[] array.
+         * 
+         * After ...values has been appended, we iterate to the end of the temporary node list, and
+         * assign this.#tail to the last node in that list.
+         */
         if (index === 0) {
-            const rightSide = this.#head;
-            const newHead = new Node(values[0]);
-            this.#head = newHead;
-            ++this.#size;
-
-            let leftSide = this.#head;
-            for (let i = 1; i < values.length; ++i) {
-                leftSide.next = new Node(values[i]);
-                leftSide = leftSide.next;
-                ++this.#size;
+            let temp = this.#head;
+            this.#head = null;
+            values.forEach(value => this.append(value));
+            this.#tail.next = temp;
+            while (temp.next) {
+                temp = temp.next;
             }
-
-            leftSide.next = rightSide;
+            this.#tail = temp;
             return;
         }
-        // Finds the node just before the insert position
-        let leftTail = this.#head;
-        for (let i = 1; i < index; ++i) {
-            leftTail = leftTail.next;
+
+        //Go to the node just before the index
+        let leftList = this.#head;
+        for (let i = 0; i < index - 1; ++i) {
+            leftList = leftList.next;
         }
-        // This is the node list that gets connected to the tail of the new values
-        const rightTail = leftTail.next;
+
+        // Save this part of the list
+        const rightList = leftList.next ? leftList.next : leftList;
 
         values.forEach(value => {
-            const node = new Node(value);
-            leftTail.next = node;
-            leftTail = leftTail.next;
+            leftList.next = new Node(value);
+            leftList = leftList.next;
             ++this.#size;
         });
-        leftTail.next = rightTail;
+
+        leftList.next = rightList;
     }
 }

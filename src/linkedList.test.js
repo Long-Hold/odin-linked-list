@@ -419,6 +419,11 @@ describe('Class LinkedList', () => {
                 expect(linkedList.tail.value).toBe(1);
                 linkedList.insertAt(1, 2);
                 expect(linkedList.at(1)).toBe(2);
+
+                linkedList.insertAt(0, 'a','b','c','d');
+                expect(linkedList.size).toBe(7);
+                expect(linkedList.head.value).toBe('a');
+                expect(linkedList.tail.value).toBe(1);
             });
         });
     });
