@@ -6,17 +6,21 @@ export class Node {
 }
 
 export class LinkedList {
-    #length;
+    #size;
     #head;
     constructor(head = null) {
         if (head instanceof Node || head === null) {
             this.#head = head;
-            this.#length = head ? 1 : 0;
+            this.#size = head ? 1 : 0;
         } else throw new TypeError('head must be an instance of Node.');
     }
 
-    size() {
-        return this.#length;
+    get size() {
+        return this.#size;
+    }
+
+    get head() {
+        return this.#head;
     }
 
     /**
@@ -27,7 +31,7 @@ export class LinkedList {
         const node = new Node(value);
         if (!this.#head) {
             this.#head = node;
-            ++this.#length;
+            ++this.#size;
             return;
         }
 
@@ -37,7 +41,7 @@ export class LinkedList {
         }
 
         dummy.next = node;
-        ++this.#length;
+        ++this.#size;
     }
 
     /**
@@ -49,14 +53,14 @@ export class LinkedList {
         const node = new Node(value);
         if (!this.#head) {
             this.#head = node;
-            ++this.#length;
+            ++this.#size;
             return;
         }
 
         let temp = this.#head;
         this.#head = node;
         this.#head.next = temp;
-        ++this.#length;
+        ++this.#size;
     }
 
     /**
@@ -71,9 +75,5 @@ export class LinkedList {
         }
 
         return dummy;
-    }
-
-    get head() {
-        return this.#head;
     }
 }

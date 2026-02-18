@@ -65,14 +65,14 @@ describe('Class LinkedList', () => {
         });
     });
     describe('methods', () => {
-        test('size() returns 0 when constructor is empty or passed null', () => {
+        test('size returns 0 when constructor is empty or passed null', () => {
             const emptyConstructor = new LinkedList();
             const nullConstructor = new LinkedList(null);
-            expect(emptyConstructor.size()).toBe(0);
-            expect(nullConstructor.size()).toBe(0);
+            expect(emptyConstructor.size).toBe(0);
+            expect(nullConstructor.size).toBe(0);
         });
 
-        describe('append() and size()', () =>  {
+        describe('append() and size', () =>  {
             test('append() creates a new head if linked list is empty', () => {
                 const linkedList = new LinkedList();
                 linkedList.append('hello');
@@ -96,33 +96,33 @@ describe('Class LinkedList', () => {
             });
             test('append() increments #size', () => {
                 const linkedList = new LinkedList();
-                expect(linkedList.size()).toBe(0);
+                expect(linkedList.size).toBe(0);
 
                 linkedList.append(1);
                 linkedList.append(2);
                 linkedList.append(3);
-                expect(linkedList.size()).toBe(3);
+                expect(linkedList.size).toBe(3);
 
                 const node = new Node();
                 const headList = new LinkedList(node);
-                expect(headList.size()).toBe(1);
+                expect(headList.size).toBe(1);
             })
         });
-        describe('prepend() and size()', () => {
+        describe('prepend() and size', () => {
             test('prepend() creates a new head if one does not exist', () => {
                 const linkedList = new LinkedList();
                 linkedList.prepend();
                 expect(linkedList.head).not.toBeNull();
-                expect(linkedList.size()).toBe(1);
+                expect(linkedList.size).toBe(1);
             });
             test('prepend() replaces head with new node', () => {
                 const linkedList = new LinkedList();
                 linkedList.append(1);
                 linkedList.append(2);
-                expect(linkedList.size()).toBe(2);
+                expect(linkedList.size).toBe(2);
                 expect(linkedList.head.value).toBe(1);
                 linkedList.prepend(0);
-                expect(linkedList.size()).toBe(3);
+                expect(linkedList.size).toBe(3);
                 expect(linkedList.head.value).toBe(0);
             });
         });
