@@ -215,6 +215,13 @@ describe('Class LinkedList', () => {
                 expect(linkedList.at(1)).toBe(-1);
                 expect(linkedList.at(5)).toBe(3);
             });
+            test('returns undefined when index exceeds list size', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(1);
+                linkedList.append(2);
+                linkedList.prepend(0);
+                expect(linkedList.at(3)).toBe(undefined);
+            });
         });
     });
 });
