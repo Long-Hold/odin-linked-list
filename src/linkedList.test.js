@@ -162,7 +162,7 @@ describe('Class LinkedList', () => {
                 expect(linkedList.tail).toBe(linkedList.head.next.next);
             })
         });
-        describe('head()', () => {
+        describe('head', () => {
             test('returns null if there is no head', () => {
                 const linkedList = new LinkedList();
                 expect(linkedList.head).toBeNull();
@@ -174,7 +174,17 @@ describe('Class LinkedList', () => {
                 linkedList.append(1);
                 linkedList.append(2);
                 expect(linkedList.head.value).toBe(0);
-            })
+            });
+            test('returns new head node after calling prepend', () => {
+                const node = new Node(1);
+                const linkedList = new LinkedList(node);
+                expect(linkedList.head.value).toBe(1);
+                linkedList.append(2);
+                linkedList.append(3);
+                
+                linkedList.prepend(0);
+                expect(linkedList.head.value).toBe(0);
+            });
         });
     });
 });
