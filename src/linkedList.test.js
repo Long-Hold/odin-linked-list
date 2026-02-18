@@ -355,6 +355,20 @@ describe('Class LinkedList', () => {
                 linkedList.pop();
                 expect(linkedList.toString()).toBe('null');
             });
+            test('returns string representation of the complete node list', () => {
+                const linkedList = new LinkedList();
+                linkedList.prepend(0);
+                expect(linkedList.toString()).toBe('(0) -> null');
+                linkedList.append(1);
+                linkedList.append(2);
+                expect(linkedList.toString()).toBe('(0) -> (1) -> (2) -> null');
+                linkedList.pop();
+                expect(linkedList.toString()).toBe('(1) -> (2) -> null');
+                linkedList.append('hello, world');
+                expect(linkedList.toString()).toBe('(1) -> (2) -> (hello, world) -> null');
+                linkedList.prepend('head');
+                expect(linkedList.toString()).toBe('(head) -> (1) -> (2) -> (hello, world) -> null');
+            });
         });
     });
 });
