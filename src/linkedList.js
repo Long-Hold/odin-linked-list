@@ -78,7 +78,7 @@ export class LinkedList {
     /**
      * Iterates over the Linked List to the specified index and returns the value of the node there.
      * @param {number} index - A positive integer value that represents which node to return the value. 
-     * @returns {number|undefined} - Returns the value of the node or undefined if it cannot be located.
+     * @returns {number|undefined}  Returns the value of the node or undefined if it cannot be located.
      */
     at(index) {
         if (!Number.isInteger(index)) throw new TypeError('Index must be a positive integer value.');
@@ -100,13 +100,18 @@ export class LinkedList {
         return dummy.value;
     }
 
+    /**
+     * Removes the head node and returns it's value. The second node in the list becomes the new head node,
+     * or head becomes null if it was the only node in the list.
+     * @returns {number|undefined} Returns the value of the head node or undefined if there isn't one.
+     */
     pop() {
         if (!this.#head) return undefined;
 
         const headValue = this.#head.value;
         this.#head = this.#head.next;
         --this.#size;
-        
+
         return headValue;
     }
 }
