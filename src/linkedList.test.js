@@ -430,5 +430,24 @@ describe('Class LinkedList', () => {
                 expect(linkedList.tail.value).toBe(1);
             });
         });
+        describe('removeAt()', () => {
+            test.each(
+                [2.3, 'string', [], new Number()]
+            )('throws TypeError when passed %s', (value) => {
+                const linkedList = new LinkedList();
+                expect(() => linkedList.removeAt(value)).toThrow(TypeError);
+            });
+            test('throws RangeError when index is out of bounds', () => {
+                const linkedList = new LinkedList();
+                expect(() => linkedList.removeAt(-1)).toThrow(RangeError);
+                expect(() => linkedList.removeAt(0)).toThrow(RangeError);
+
+                linkedList.append();
+                expect(() => linkedList.removeAt(1)).toThrow(RangeError);
+                expect(() => linkedList.removeAt(0)).not.toThrow(RangeError);
+                linkedList.pop();
+                expect(() => linkedList.removeAt(0)).toThrow(RangeError);
+            });
+        });
     });
 });

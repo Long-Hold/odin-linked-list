@@ -219,4 +219,10 @@ export class LinkedList {
          */
         this.#head = sentinel.next;
     }
+
+    removeAt(index) {
+        if (!Number.isInteger(index)) throw new TypeError('Index must be an integer.');
+        if (index < 0 || index >= this.#size) throw new RangeError('Index must be within list size range.');
+
+    }
 }
