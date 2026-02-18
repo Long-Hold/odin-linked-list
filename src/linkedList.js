@@ -75,6 +75,11 @@ export class LinkedList {
         ++this.#size;
     }
 
+    /**
+     * Iterates over the Linked List to the specified index and returns the value of the node there.
+     * @param {number} index - A positive integer value that represents which node to return the value. 
+     * @returns {number|undefined} - Returns the value of the node or undefined if it cannot be located.
+     */
     at(index) {
         if (!Number.isInteger(index)) throw new TypeError('Index must be a positive integer value.');
         if (index < 0) throw new RangeError('Index must be a positive integer value.');
