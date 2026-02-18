@@ -7,9 +7,10 @@ export class Node {
 
 export class LinkedList {
     #length;
+    #head;
     constructor(head = null) {
         if (head instanceof Node || head === null) {
-            this.head = head;
+            this.#head = head;
             this.#length = head ? 1 : 0;
         } else throw new TypeError('head must be an instance of Node.');
     }
@@ -24,13 +25,13 @@ export class LinkedList {
      */
     append(value = null) {
         const node = new Node(value);
-        if (!this.head) {
-            this.head = node;
+        if (!this.#head) {
+            this.#head = node;
             ++this.#length;
             return;
         }
 
-        let dummy = this.head;
+        let dummy = this.#head;
         while (dummy.next) {
             dummy = dummy.next;
         }
@@ -46,15 +47,15 @@ export class LinkedList {
      */
     prepend(value = null) {
         const node = new Node(value);
-        if (!this.head) {
-            this.head = node;
+        if (!this.#head) {
+            this.#head = node;
             ++this.#length;
             return;
         }
 
-        let temp = this.head;
-        this.head = node;
-        this.head.next = temp;
+        let temp = this.#head;
+        this.#head = node;
+        this.#head.next = temp;
         ++this.#length;
     }
 
@@ -63,8 +64,8 @@ export class LinkedList {
      * @returns {Node|null} The last Node in the list or null.
      */
     tail() {
-        if (!this.head) return null;
-        let dummy = this.head;
+        if (!this.#head) return null;
+        let dummy = this.#head;
         while (dummy.next) {
             dummy = dummy.next;
         }
@@ -72,7 +73,7 @@ export class LinkedList {
         return dummy;
     }
 
-    head() {
-        return this.head;
+    get head() {
+        return this.#head;
     }
 }

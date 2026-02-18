@@ -157,7 +157,7 @@ describe('Class LinkedList', () => {
         describe('head()', () => {
             test('returns null if there is no head', () => {
                 const linkedList = new LinkedList();
-                expect(linkedList.head()).toBeNull();
+                expect(linkedList.head).toBeNull();
             })
         });
     });
