@@ -319,6 +319,9 @@ describe('Class LinkedList', () => {
                 expect(linkedList.findIndex(0)).toBe(0);
                 expect(linkedList.findIndex(1)).toBe(1);
                 expect(linkedList.findIndex('A word?!')).toBe(2);
+
+                linkedList.pop();
+                expect(linkedList.findIndex(1)).toBe(0);
             });
             test('returns the index of the first node with matching value if there are duplicates', () => {
                 const linkedList = new LinkedList();
@@ -329,6 +332,17 @@ describe('Class LinkedList', () => {
                 expect(linkedList.findIndex('head')).toBe(1);
                 expect(linkedList.findIndex('shoulders')).toBe(0);
             });
+            test('returns -1 if the node value cannot be located', () => {
+                const linkedList = new LinkedList();
+                linkedList.append('one');
+                linkedList.append(2);
+                linkedList.append('Hello, world');
+                expect(linkedList.findIndex('one')).toBe(0);
+
+                linkedList.pop();
+                expect(linkedList.findIndex('one')).toBe(-1);
+                expect(linkedList.findIndex('this does not exist')).toBe(-1);
+            })
         });
     });
 });
