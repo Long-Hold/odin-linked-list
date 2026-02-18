@@ -197,6 +197,24 @@ describe('Class LinkedList', () => {
                 expect(() => linkedList.at(-1)).toThrow(RangeError);
                 expect(() => linkedList.at(-2)).toThrow(RangeError);
             });
+            test('returns the value of the node at the passed index', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(0);
+                linkedList.append(1);
+                linkedList.append(2);
+                linkedList.append(3);
+
+                expect(linkedList.at(0)).toBe(0);
+                expect(linkedList.at(1)).toBe(1);
+                expect(linkedList.at(2)).toBe(2);
+                expect(linkedList.at(3)).toBe(3);
+
+                linkedList.prepend(-1);
+                linkedList.prepend(-2);
+                expect(linkedList.at(0)).toBe(-2);
+                expect(linkedList.at(1)).toBe(-1);
+                expect(linkedList.at(5)).toBe(3);
+            });
         });
     });
 });

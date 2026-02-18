@@ -78,5 +78,20 @@ export class LinkedList {
     at(index) {
         if (!Number.isInteger(index)) throw new TypeError('Index must be a positive integer value.');
         if (index < 0) throw new RangeError('Index must be a positive integer value.');
+
+        if (index > (this.#size - 1)) return undefined;
+
+        /**
+         * If index = 0, then the while loop is never executed and the head is simply returned.
+         * The loop will actually terminate when i = index - 1 because of how the list is iterated.
+         * The current node after each loop execution is i + 1.
+         */
+        let dummy = this.#head;
+        let i = 0;
+        while (dummy.next && i < index) {
+            dummy = dummy.next;
+            ++i;
+        }
+        return dummy.value;
     }
 }
