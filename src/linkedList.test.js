@@ -223,5 +223,14 @@ describe('Class LinkedList', () => {
                 expect(linkedList.at(3)).toBe(undefined);
             });
         });
+        describe('pop()', () => {
+            test('returns the value of the removed head node', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(1);
+                expect(linkedList.pop()).toBe(1);
+                linkedList.prepend(0);
+                expect(linkedList.pop()).toBe(0);
+            });
+        });
     });
 });

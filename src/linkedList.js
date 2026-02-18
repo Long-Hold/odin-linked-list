@@ -99,4 +99,11 @@ export class LinkedList {
         }
         return dummy.value;
     }
+
+    pop() {
+        if (!this.#head) return undefined;
+        const headValue = this.#head.value;
+        this.#head = this.#head.next;
+        return headValue;
+    }
 }
