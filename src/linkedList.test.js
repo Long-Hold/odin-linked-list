@@ -253,6 +253,9 @@ describe('Class LinkedList', () => {
                 linkedList.prepend(1);
                 linkedList.pop();
                 expect(linkedList.head.value).toBe(0);
+                linkedList.pop();
+                linkedList.pop();
+                expect(linkedList.head).toBeNull();
             });
             test('size property correctly matches list length', () => {
                 const linkedList = new LinkedList();
@@ -269,6 +272,19 @@ describe('Class LinkedList', () => {
                 linkedList.pop();
                 expect(linkedList.size).toBe(0);
             });
+            test('resets the tail if all nodes were removed', () => {
+                const linkedList = new LinkedList();
+                expect(linkedList.head).toBeNull();
+                expect(linkedList.tail).toBeNull();
+                linkedList.append(1);
+                linkedList.append(2);
+                expect(linkedList.head.value).toBe(1);
+                expect(linkedList.tail.value).toBe(2);
+                linkedList.pop();
+                linkedList.pop();
+                expect(linkedList.head).toBeNull();
+                expect(linkedList.tail).toBeNull();
+            })
         });
         describe('contains()', () => {
             test('returns false if the Linked List is empty', () => {

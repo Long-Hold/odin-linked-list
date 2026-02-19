@@ -112,6 +112,8 @@ export class LinkedList {
         this.#head = this.#head.next;
         --this.#size;
 
+        if (!this.#head) this.#tail = null;
+
         return headValue;
     }
 
