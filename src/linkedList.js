@@ -223,6 +223,21 @@ export class LinkedList {
     removeAt(index) {
         if (!Number.isInteger(index)) throw new TypeError('Index must be an integer.');
         if (index < 0 || index >= this.#size) throw new RangeError('Index must be within list size range.');
+        let dummy = this.#head;
 
+        if (index === 0) {
+            this.pop();
+            return;
+        }
+
+        if (index === this.#size - 1) {
+            for (let i = 0; i < index - 1; ++i) {
+                dummy = dummy.next;
+            }
+            dummy.next = null;
+            this.#tail = dummy;
+            --this.#size;
+            return;
+        }
     }
 }

@@ -448,6 +448,33 @@ describe('Class LinkedList', () => {
                 linkedList.pop();
                 expect(() => linkedList.removeAt(0)).toThrow(RangeError);
             });
+            test('sets new tail and size if index is the last node', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(1);
+                linkedList.append(2);
+                expect(linkedList.size).toBe(2);
+                expect(linkedList.tail.value).toBe(2);
+
+                linkedList.removeAt(1);
+                expect(linkedList.size).toBe(1);
+                expect(linkedList.tail.value).toBe(1);
+            });
+            test('sets new head and size if index is 0', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(1);
+                expect(linkedList.size).toBe(1);
+                expect(linkedList.head.value).toBe(1);
+                linkedList.removeAt(0);
+                expect(linkedList.size).toBe(0);
+                expect(linkedList.head).toBeNull();
+                linkedList.append(1);
+                linkedList.append(2);
+                expect(linkedList.size).toBe(2);
+                expect(linkedList.head.value).toBe(1);
+                linkedList.removeAt(0);
+                expect(linkedList.size).toBe(1);
+                expect(linkedList.head.value).toBe(2);
+            });
         });
     });
 });
