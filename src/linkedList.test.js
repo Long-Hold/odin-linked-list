@@ -468,12 +468,14 @@ describe('Class LinkedList', () => {
                 const linkedList = new LinkedList();
                 linkedList.append(1);
                 linkedList.append(2);
-                expect(linkedList.size).toBe(2);
-                expect(linkedList.tail.value).toBe(2);
+                linkedList.append(3);
+                linkedList.append(4);
+                expect(linkedList.size).toBe(4);
+                expect(linkedList.tail.value).toBe(4);
 
-                linkedList.removeAt(1);
-                expect(linkedList.size).toBe(1);
-                expect(linkedList.tail.value).toBe(1);
+                linkedList.removeAt(3);
+                expect(linkedList.size).toBe(3);
+                expect(linkedList.tail.value).toBe(3);
             });
             test('sets new head and size if index is 0', () => {
                 const linkedList = new LinkedList();
@@ -490,6 +492,24 @@ describe('Class LinkedList', () => {
                 linkedList.removeAt(0);
                 expect(linkedList.size).toBe(1);
                 expect(linkedList.head.value).toBe(2);
+            });
+            test('removes specified value, updates size, preserves head and tail', () => {
+                const linkedList = new LinkedList();
+                linkedList.append(0);
+                linkedList.append(1);
+                linkedList.append(2);
+                linkedList.append(3);
+
+                expect(linkedList.size).toBe(4);
+                expect(linkedList.head.value).toBe(0);
+                expect(linkedList.tail.value).toBe(3);
+                expect(linkedList.at(2)).toBe(2);
+
+                linkedList.removeAt(2);
+                expect(linkedList.size).toBe(3);
+                expect(linkedList.head.value).toBe(0);
+                expect(linkedList.tail.value).toBe(3);
+                expect(linkedList.at(2)).toBe(3);
             });
         });
     });

@@ -222,6 +222,11 @@ export class LinkedList {
         this.#head = sentinel.next;
     }
 
+    /**
+     * Iterates through the linked list to remove the node that resides there.
+     * 
+     * @param {number} index - The index that holds the node to be removed.  
+     */
     removeAt(index) {
         if (!Number.isInteger(index)) throw new TypeError('Index must be an integer.');
         if (index < 0 || index >= this.#size) throw new RangeError('Index must be within list size range.');
@@ -241,5 +246,12 @@ export class LinkedList {
             --this.#size;
             return;
         }
+
+        let leftSide = this.#head;
+        for (let i = 0; i < index - 1; ++i) {
+            leftSide = leftSide.next;
+        }
+        leftSide.next = leftSide.next.next;
+        --this.#size;
     }
 }
