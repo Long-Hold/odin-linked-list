@@ -485,6 +485,7 @@ describe('Class LinkedList', () => {
                 linkedList.removeAt(0);
                 expect(linkedList.size).toBe(0);
                 expect(linkedList.head).toBeNull();
+                expect(linkedList.tail).toBeNull();
                 linkedList.append(1);
                 linkedList.append(2);
                 expect(linkedList.size).toBe(2);
